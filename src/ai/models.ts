@@ -1,5 +1,5 @@
-import { Chat } from "jsr:@epi/ollama";
-import { GoogleGenerativeAI } from "npm:@google/generative-ai@^0.2.0";
+import {Chat} from "jsr:@epi/ollama";
+import {GoogleGenerativeAI} from "npm:@google/generative-ai@^0.2.0";
 
 // Model type for supported models
 export type ModelType = "llama3.2" | "gemini-2.0-flash" | "gemini-2.0-flash-lite" | "gemini-2.0-flash-exp";
@@ -22,7 +22,7 @@ export async function generateWithOllama(prompt: string, model: string = DEFAULT
     const cleanModel = model.replace(/^ollama:/, '');
     
     console.log(`Using Ollama model: ${cleanModel}`);
-    const messages = [{ role: "user", content: prompt }];
+    const messages = [{ role: "user" as const, content: prompt }];
     
     // Handle special case for llama3.2 model string formats
     // Sometimes the model could be specified as "llama3" or "llama3.2" without version
@@ -30,13 +30,11 @@ export async function generateWithOllama(prompt: string, model: string = DEFAULT
     if (cleanModel === "llama3" || cleanModel === "llama3.2") {
       actualModel = "llama3.2:latest";
     }
-    
-    const response = await Chat({ 
+
+    return await Chat({
       messages,
       model: actualModel
     });
-    
-    return response;
   } catch (error) {
     console.error("\x1b[31m%s\x1b[0m", "Error generating response from Ollama:", error);
     
