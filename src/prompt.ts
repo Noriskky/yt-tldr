@@ -66,11 +66,12 @@ export function createSummaryPrompt(summaryLength: string, title?: string, creat
 /**
  * Converts transcript data to formatted text with timestamps
  */
+// deno-lint-ignore no-explicit-any
 export function transcriptToText(transcript: Array<{text: string; offset: number; duration: number; [key: string]: any}>): string {
   return transcript.map(item => {
     const minutes = Math.floor(item.offset / 60);
     const seconds = Math.floor(item.offset % 60);
-    const timestamp = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const timestamp = `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     
     return `${timestamp} - ${item.text}`;
   }).join('\n');
