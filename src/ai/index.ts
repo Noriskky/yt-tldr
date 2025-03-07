@@ -8,5 +8,4 @@ export type {
 export {
   generateWithOllama,
   generateWithGemini,
-  generateResponse,
 } from "./models.ts";
