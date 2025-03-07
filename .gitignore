@@ -1,12 +1,11 @@
-.deno
-*.log
-.temp
-.cache
-.env
+### Deno template
+/.idea/
+/.vscode/
 
-.vscode-test
-.DS_Store
-pids
-*.pid
-*.seed
-*.pid.lock
+/node_modules
+
+.env
+*.orig
+*.pyc
+*.swp
+
