@@ -1,16 +1,10 @@
 import {Chat} from "jsr:@epi/ollama";
 import {GoogleGenerativeAI} from "npm:@google/generative-ai@^0.2.0";
 
-// Model type for supported models
 export type ModelType = "llama3.2" | "gemini-2.0-flash" | "gemini-2.0-flash-lite";
 
-// Valid Gemini models
 export const VALID_GEMINI_MODELS = ["gemini-2.0-flash", "gemini-2.0-flash-lite"];
-
-// Default Gemini model
 export const DEFAULT_GEMINI_MODEL = "gemini-2.0-flash";
-
-// Default Ollama model
 export const DEFAULT_OLLAMA_MODEL = "llama3.2:latest";
 
 /**
@@ -83,19 +77,4 @@ export async function generateWithGemini(prompt: string, model: string = "gemini
     console.error("\x1b[31m%s\x1b[0m", "Error generating response from Gemini:", error);
     throw error;
   }
-}
-
-/**
- * Unified function to generate responses from different models
- */
-export async function generateResponse(
-  prompt: string, 
-  modelType: ModelType | string = DEFAULT_OLLAMA_MODEL
-): Promise<string> {
-  if (modelType === "gemini" || VALID_GEMINI_MODELS.includes(modelType)) {
-    const actualModel = modelType === "gemini" ? DEFAULT_GEMINI_MODEL : modelType;
-    return generateWithGemini(prompt, actualModel);
-  } 
-
-  return generateWithOllama(prompt, modelType);
 }
