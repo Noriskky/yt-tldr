@@ -9,11 +9,16 @@ export function createSummaryPrompt(summaryLength: string, title?: string, creat
   Avoid phrases like "This appears to be..." or "The speaker mentioned." Only state facts from the transcript. 🚫  
   If there is an ad section, clearly label it as **[AD]** with the corresponding timestamp. 📢  
   The Speaker should always be called The Creator unless it's not the main speaker. 👤
+  In the Summary if you want to display the title of the video, use the placeholder "%videotitle%".
 
   📄 **How to structure the summary:**  
   1️⃣ Start with a **short paragraph** summarizing the overall topic and key takeaways of the video.  
   2️⃣ Only include **Smart Sections** if there is **enough meaningful information** in that part of the video.  
   3️⃣ For **each Smart Section**, only include a **title** (without a detailed summary), unless a full summary is necessary.  
+  
+  **Metadata:**
+    - **Title:** ${title || '[Video Title Unknown]'}
+    - **Creator:** ${creator || '[Creator Name Unknown please refer to as The Creator]'}
   
   🔧 **Customization:**  
   - **Length:** ${summaryLength} summary.  
@@ -41,7 +46,7 @@ export function createSummaryPrompt(summaryLength: string, title?: string, creat
   
   📌 **Example Format:**  
   
-  🎬 **Title:** ${title || '[Video Title]'}  
+  🎬 **Title:** %videotitle%  
   ${creator ? `👤 **Creator:** ${creator}  ` : ''}  
   🎙️ **Speaker(s):** [If available]  
   
