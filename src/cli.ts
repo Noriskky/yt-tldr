@@ -11,7 +11,6 @@ export function printHelp(): void {
   console.log("\x1b[36m%s\x1b[0m", "                    - gemini (uses gemini-2.0-flash)");
   console.log("\x1b[36m%s\x1b[0m", "                    - gemini-2.0-flash");
   console.log("\x1b[36m%s\x1b[0m", "                    - gemini-2.0-flash-lite");
-  console.log("\x1b[36m%s\x1b[0m", "                    - gemini-2.0-flash-exp");
   console.log("\x1b[36m%s\x1b[0m", "                    - other Ollama models");
   console.log("\x1b[36m%s\x1b[0m", "  --help, -h        Show this help message");
   
