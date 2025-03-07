@@ -1,9 +1,12 @@
 /**
  * Re-exports from the AI models module
  */
-export {
+export type {
   ModelType,
+} from "./models.ts";
+
+export {
   generateWithOllama,
   generateWithGemini,
   generateResponse,
-} from './models';
+} from "./models.ts";
