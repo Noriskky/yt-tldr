@@ -1,0 +1,216 @@
+/* YouTube TL;DR Extension Styles */
+
+.yt-tldr-button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.2s;
+}
+
+.yt-tldr-button:hover {
+  background-color: #d60000;
+}
+
+.yt-tldr-summary-container {
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.yt-tldr-summary {
+  padding: 15px;
+}
+
+.yt-tldr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.yt-tldr-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #030303;
+}
+
+.yt-tldr-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #606060;
+}
+
+.yt-tldr-content {
+  line-height: 1.6;
+  color: #0f0f0f;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+
+/* Markdown styling */
+.yt-tldr-content h1 {
+  font-size: 1.8em;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+.yt-tldr-content h2 {
+  font-size: 1.5em;
+  margin-top: 0.7em;
+  margin-bottom: 0.5em;
+}
+
+.yt-tldr-content h3 {
+  font-size: 1.3em;
+  margin-top: 0.6em;
+  margin-bottom: 0.5em;
+}
+
+.yt-tldr-content h4 {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.yt-tldr-content ul, 
+.yt-tldr-content ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.yt-tldr-content li {
+  margin: 0.3em 0;
+}
+
+.yt-tldr-content p {
+  margin: 0.5em 0;
+}
+
+.yt-tldr-content blockquote {
+  border-left: 4px solid #d3d3d3;
+  padding-left: 1em;
+  margin-left: 0;
+  color: #555;
+}
+
+.yt-tldr-content pre {
+  background-color: #f5f5f5;
+  padding: 0.7em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.yt-tldr-content code {
+  background-color: #f5f5f5;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.yt-tldr-content a {
+  color: #3ea6ff;
+  text-decoration: none;
+}
+
+.yt-tldr-content a:hover {
+  text-decoration: underline;
+}
+
+.yt-tldr-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.yt-tldr-content th, 
+.yt-tldr-content td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.yt-tldr-content th {
+  background-color: #f2f2f2;
+}
+
+.yt-tldr-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.yt-tldr-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255,0,0,0.3);
+  border-radius: 50%;
+  border-top-color: #ff0000;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Enhanced error styling */
+.yt-tldr-error {
+  padding: 15px;
+  color: #d32f2f;
+  text-align: center;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.yt-tldr-error h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #b71c1c;
+}
+
+.yt-tldr-error p {
+  margin: 0 0 15px;
+}
+
+.yt-tldr-error button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.yt-tldr-error button:hover {
+  background-color: #b71c1c;
+}
+
+/* Timestamp styling */
+.yt-tldr-timestamp {
+  color: #3ea6ff;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.yt-tldr-timestamp:hover {
+  color: #1a73e8;
+  text-decoration: underline;
+}
