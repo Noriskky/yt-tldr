@@ -35,10 +35,10 @@ app.use(async (ctx, next) => {
     await next();
   } catch (err) {
     console.error("Server error:", err);
-    ctx.response.status = err.status || 500;
+    ctx.response.status = err instanceof Error && 'status' in err ? Number(err.status) : 500;
     ctx.response.body = {
-      error: err.message || "Internal Server Error",
-      stack: Deno.env.get("ENVIRONMENT") === "development" ? err.stack : undefined
+      error: err instanceof Error ? err.message : "Internal Server Error",
+      stack: Deno.env.get("ENVIRONMENT") === "development" && err instanceof Error ? err.stack : undefined
     };
     ctx.response.headers.set("Content-Type", "application/json");
   }
