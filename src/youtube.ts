@@ -11,7 +11,6 @@ export async function fetchTranscript(videoUrl: string): Promise<any[]> {
  * Extract YouTube video ID from various URL formats
  */
 function extractVideoId(url: string): string {
-  // Handle different YouTube URL formats
   if (url.includes("youtube.com/watch")) {
     const urlObj = new URL(url);
     return urlObj.searchParams.get("v") || url;
@@ -33,10 +32,8 @@ function extractVideoId(url: string): string {
  */
 export async function fetchVideoMetadata(videoUrl: string): Promise<{ title: string, creator: string }> {
   try {
-    // Extract video ID if it's a URL
     const id = extractVideoId(videoUrl);
-    
-    // Use YouTube's oEmbed endpoint to get video information
+
     const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`);
     
     if (!response.ok) {
