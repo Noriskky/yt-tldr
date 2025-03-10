@@ -1,6 +1,6 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 import { fetchTranscript, fetchVideoMetadata } from "../src/youtube.ts";
-import { generateWithGemini, generateWithOllama, VALID_GEMINI_MODELS, DEFAULT_GEMINI_MODEL } from "../src/ai/models.ts";
+import {VALID_GEMINI_MODELS, DEFAULT_GEMINI_MODEL, promptAI} from "../src/ai/models.ts";
 import { createSummaryPrompt, transcriptToText } from "../src/prompt.ts";
 import { formatMarkdown } from "./utils.ts";
 
@@ -82,12 +82,7 @@ async function generateSummary(transcript: any[], length: string, model: string,
         "\n\nPlease format your response in markdown with clear list formatting - ensure each list item is on a new line with proper markdown syntax (- item or 1. item with a space after the marker).";
     const text = prompt + "\n\nTranscript:\n---\n" + transcriptToText(transcript) + "\n---\n";
 
-    if (model === "gemini" || VALID_GEMINI_MODELS.includes(model)) {
-        const modelToUse = model === "gemini" ? DEFAULT_GEMINI_MODEL : model;
-        return processPlaceholders(await generateWithGemini(text, modelToUse), title);
-    } else {
-        return processPlaceholders(await generateWithOllama(text, model), title);
-    }
+    return processPlaceholders(await promptAI(text, model), title);
 }
 
 export default router;
