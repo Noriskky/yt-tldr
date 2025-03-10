@@ -13,7 +13,7 @@ router.get("/health", (ctx) => {
 // Video summary endpoint
 router.post("/summarize", async (ctx) => {
     const body = await ctx.request.body.json();
-    const { videoId, model = "llama3.2:latest", length = "short" } = body;
+    const { videoId, model = "gemini", length = "short" } = body;
 
     if (!videoId) {
         ctx.response.status = 400;
