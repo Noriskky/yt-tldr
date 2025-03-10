@@ -13,9 +13,6 @@ export function printHelp(): void {
   console.log("\x1b[36m%s\x1b[0m", "                    - gemini-2.0-flash-lite");
   console.log("\x1b[36m%s\x1b[0m", "                    - other Ollama models");
   console.log("\x1b[36m%s\x1b[0m", "  --help, -h        Show this help message");
-  
-  console.log("\nFor Gemini models, set the GEMINI_API_KEY environment variable");
-  console.log("Example: GEMINI_API_KEY=your_key deno run -A main.ts --video https://youtu.be/example --model gemini-2.0-flash");
 }
 
 /**
