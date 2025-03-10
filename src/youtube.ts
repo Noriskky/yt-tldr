@@ -22,8 +22,6 @@ function extractVideoId(url: string): string {
     const parts = url.split("youtube.com/v/");
     return parts[1].split("?")[0];
   }
-  
-  // If no patterns match, assume the input is a direct video ID
   return url;
 }
 
