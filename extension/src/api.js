@@ -3,7 +3,8 @@ const apiService = {
   config: {
     defaultApiUrl: 'http://localhost:8000/summarize',
     defaultModel: 'llama3.2:latest',
-    defaultLength: 'short'
+    defaultLength: 'short',
+    defaultOllamaModel: 'llama3.2:latest'  // Default without prefix
   },
 
   async requestSummary(videoId, extensionCore, uiManager, markdownHelper) {
@@ -18,17 +19,26 @@ const apiService = {
       extensionCore.safeStorageGet({
         apiUrl: this.config.defaultApiUrl,
         model: this.config.defaultModel,
-        length: this.config.defaultLength
+        length: this.config.defaultLength,
+        ollamaModel: this.config.defaultOllamaModel
       }, async (settings) => {
         if (!extensionCore.isActive) {
           uiManager.displayError("Extension context was invalidated. Please refresh the page and try again.");
           return;
         }
 
+        let cleanmodel = settings.model;
+        if (settings.model === 'ollama') {
+          // Add ollama: prefix if not already present
+          cleanmodel = settings.ollamaModel.startsWith('ollama:') ?
+              settings.ollamaModel :
+              `ollama:${settings.ollamaModel}`;
+        }
+
         try {
           console.log('Sending request to:', settings.apiUrl, {
             videoId: videoId,
-            model: settings.model,
+            model: cleanmodel,
             length: settings.length
           });
 
@@ -41,7 +51,7 @@ const apiService = {
             mode: 'cors',
             body: JSON.stringify({
               videoId: videoId,
-              model: settings.model,
+              model: cleanmodel,
               length: settings.length
             })
           });
