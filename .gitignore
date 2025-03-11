@@ -9,3 +9,6 @@
 *.pyc
 *.swp
 
+extension.pem
+.DS_Store
+extension/dist
