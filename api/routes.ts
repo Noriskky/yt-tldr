@@ -1,8 +1,7 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 import { fetchTranscript, fetchVideoMetadata } from "../src/youtube.ts";
-import {VALID_GEMINI_MODELS, DEFAULT_GEMINI_MODEL, promptAI} from "../src/ai/models.ts";
-import { createSummaryPrompt, transcriptToText } from "../src/prompt.ts";
 import { formatMarkdown } from "./utils.ts";
+import {generateSummary} from "../src/transcript.ts";
 
 const router = new Router();
 
@@ -54,7 +53,7 @@ router.post("/summarize", async (ctx) => {
         return;
     }
 
-    const summary = await generateSummary(transcript, length, model, title, creator);
+    const summary = await generateSummary(transcript, length, model, title, creator, false);
 
     if (!summary || summary.trim() === "") {
         throw new Error("Failed to generate summary");
@@ -69,20 +68,5 @@ router.post("/summarize", async (ctx) => {
         summary: formattedSummary
     };
 });
-
-function processPlaceholders(summary: string, title?: string): string {
-    if (!title) {
-        return summary;
-    }
-    return summary.replace(/%videotitle%/g, title);
-}
-
-async function generateSummary(transcript: any[], length: string, model: string, title?: string, creator?: string): Promise<string> {
-    const prompt = createSummaryPrompt(length, title, creator) +
-        "\n\nPlease format your response in markdown with clear list formatting - ensure each list item is on a new line with proper markdown syntax (- item or 1. item with a space after the marker).";
-    const text = prompt + "\n\nTranscript:\n---\n" + transcriptToText(transcript) + "\n---\n";
-
-    return processPlaceholders(await promptAI(text, model), title);
-}
 
 export default router;
