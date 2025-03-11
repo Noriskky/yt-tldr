@@ -1,7 +1,7 @@
 import { parse } from "https://deno.land/std@0.114.0/flags/mod.ts";
 import { fetchTranscript, fetchVideoMetadata } from "./src/youtube.ts";
 import { printHelp, validateLength } from "./src/cli.ts";
-import { generateSummary } from "./src/transcript.ts";
+import {generateSummary} from "./src/transcript.ts";
 
 async function processSummary(
     videoUrl: string,
